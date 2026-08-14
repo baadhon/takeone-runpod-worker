@@ -31,6 +31,8 @@ jobs:
           context: ./worker-comfyui
           build-args: |
             COMFYUI_VERSION=0.31.1
+            MODEL_TYPE=none
+            CUDA_VERSION_FOR_COMFY=12.6
           platforms: linux/amd64
           push: true
           tags: ghcr.io/${{ github.repository_owner }}/takeone-runpod-worker:latest
