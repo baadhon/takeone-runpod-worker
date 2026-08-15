@@ -18,10 +18,10 @@ jobs:
           ref: "5.8.6"
           path: worker-comfyui
 
-      - name: Patch Dockerfile — add build-essential (Triton needs a C compiler at runtime)
+      - name: Patch Dockerfile — add build-essential + python3.12-dev (Triton needs a C compiler + Python.h at runtime)
         run: |
-          sed -i 's/apt-get install -y \\/apt-get install -y \\\n    build-essential \\/' worker-comfyui/Dockerfile
-          grep -A2 "apt-get install -y" worker-comfyui/Dockerfile | head -5
+          sed -i 's/apt-get install -y \\/apt-get install -y \\\n    build-essential \\\n    python3.12-dev \\/' worker-comfyui/Dockerfile
+          grep -A4 "apt-get install -y" worker-comfyui/Dockerfile | head -6
 
       - uses: docker/setup-buildx-action@v3
 
